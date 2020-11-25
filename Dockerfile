@@ -30,6 +30,11 @@ RUN apt-get update \
     xvfb
 
 
+# Install composer and put binary into $PATH
+RUN curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/ && \
+    ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
+
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get install -y nodejs
 
@@ -47,11 +52,3 @@ RUN echo '{ "allow_root": true  }' > /root/.bowerrc
 # RUN curl -sS https://getcomposer.org/installer | php && \
     # mv composer.phar /usr/local/bin/ && \
     # ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
-
-# Install Node.js & Yarn
-# RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-    # apt install -y nodejs
-
-# RUN npm install -g gulp bower
-# RUN echo '{ "allow_root": true  }' > /root/.bowerrc
-
