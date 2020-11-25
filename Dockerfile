@@ -31,7 +31,7 @@ RUN apt-get update \
 
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
-    apt-get install -y nodejs npm
+    apt-get install -y nodejs
 
 RUN npm install -g gulp bower
 RUN echo '{ "allow_root": true  }' > /root/.bowerrc
