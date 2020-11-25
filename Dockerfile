@@ -31,7 +31,7 @@ RUN apt-get update \
 
 
 # Install composer and put binary into $PATH
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.17 && \
+RUN curl -sS https://getcomposer.org/installer | php -- --version=1.10.17 && \
     mv composer.phar /usr/local/bin/ && \
     ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 
