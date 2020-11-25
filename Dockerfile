@@ -3,8 +3,8 @@ FROM php:7.3
 RUN apt-get update \
     && apt-get install -y --no-install-recommends
 
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-    apt-get install -y nodejs npm
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+    apt-get install -y nodejs
 
 RUN npm install -g gulp bower
 RUN echo '{ "allow_root": true  }' > /root/.bowerrc
