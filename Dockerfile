@@ -29,6 +29,12 @@ RUN apt-get update \
     xauth \
     xvfb
 
+# install php dependencies
+RUN pecl install imagick mcrypt-1.0.2 \
+    && docker-php-ext-install -j$(nproc) exif iconv soap zip \
+    && docker-php-ext-configure gd \
+    && docker-php-ext-install -j$(nproc) gd pdo_mysql \
+    && docker-php-ext-enable mcrypt exif
 
 # Install composer and put binary into $PATH
 RUN curl -sS https://getcomposer.org/installer | php -- --version=1.10.17 && \
@@ -37,9 +43,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --version=1.10.17 && \
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get install -y nodejs
-
-RUN npm install -g gulp bower
-RUN echo '{ "allow_root": true  }' > /root/.bowerrc
 
 
 # RUN apt update && \
